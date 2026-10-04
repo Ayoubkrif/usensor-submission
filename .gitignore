@@ -4,5 +4,5 @@ compile_commands.json
 #obj
 build/
 #exec
-/checker
+checker
 /usensor

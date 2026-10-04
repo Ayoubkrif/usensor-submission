@@ -37,7 +37,7 @@ class Event
 
 		u64			timestamp() const { return _timestamp; }
 		EventType	type() const { return _type; }
-		// sort overload
+		// comp overload
 		bool	operator<(const Event &other) const { return _timestamp < other._timestamp; }
 	protected:
 		Event(EventType type, u64 timestamp) : _timestamp(timestamp), _type(type) {}

@@ -21,6 +21,7 @@ SRC_FILES = \
 
 # Classes files listing
 CLASS_FILES = \
+	BatchQueue.cpp \
 
 CLASSES = $(addprefix $(CLASS_DIR)/, $(CLASS_FILES))
 SOURCES = $(addprefix $(SRC_DIR)/,$(SRC_FILES))

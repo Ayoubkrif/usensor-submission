@@ -43,24 +43,24 @@ bool	isValidHeader(const u8 *h)
 
 // nullptr si mauvais checksum OU flag invalide OU capteur inconnu
 // remplis le minimum syndical pour le moment
-// std::unique_ptr<Event>	parseRecord(const u8 *r)
-// {
-// 	if (getU32(r + 28) != fnv1a(r, 28) || !(r[13] & 1))
-// 		return nullptr;
-//
-// 	const u64	ts = getU64(r);
-//
-// 	// capture le sensor ID
-// 	switch (static_cast<EventType>(r[12]))
-// 	{
-// 	case EventType::Camera: return std::make_unique<CameraEvent>(ts);
-// 	case EventType::Imu: return std::make_unique<ImuEvent>(ts);
-// 	case EventType::Gps: return std::make_unique<GpsEvent>(ts);
-// 	case EventType::Temp: return std::make_unique<TempEvent>(ts);
-// 	case EventType::Button: return std::make_unique<ButtonEvent>(ts);
-// 	}
-// 	return nullptr;
-// }
+std::unique_ptr<Event>	parseRecord(const u8 *r)
+{
+	if (getU32(r + 28) != fnv1a(r, 28) || !(r[13] & 1))
+		return nullptr;
+
+	const u64	ts = getU64(r);
+
+	// capture le sensor ID
+	switch (static_cast<EventType>(r[12]))
+	{
+	case EventType::Camera: return std::make_unique<CameraEvent>(ts);
+	case EventType::Imu: return std::make_unique<ImuEvent>(ts);
+	case EventType::Gps: return std::make_unique<GpsEvent>(ts);
+	case EventType::Temp: return std::make_unique<TempEvent>(ts);
+	case EventType::Button: return std::make_unique<ButtonEvent>(ts);
+	}
+	return nullptr;
+}
 
 } // namespace
 
